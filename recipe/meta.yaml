@@ -19,22 +19,19 @@ requirements:
   build:
     - python
     - setuptools
-    - numpy 1.8.*  # [not (win and (py35 or py36))]
-    - numpy 1.9.*  # [win and py35]
-    - numpy 1.11.*  # [win and py36]
+    - numpy
     - cython >=0.19
-    - hdf5 1.10.1
-    - libnetcdf 4.4.*  # [win and py2k]
-    - libnetcdf 4.5.*  # [not (win and py2k)]
+    - hdf5
+    - libnetcdf
+
+  build:
+    - {{ compiler('c') }}
+
   run:
     - python
     - setuptools
-    - numpy >=1.8  # [not (win and (py35 or py36))]
-    - numpy >=1.9  # [win and py35]
-    - numpy >=1.11  # [win and py36]
-    - hdf5 1.10.1
-    - libnetcdf 4.4.*  # [win and py2k]
-    - libnetcdf 4.5.*  # [not (win and py2k)]
+    # run_exports will take care of libnetcdf and hdf5
+    - {{ pin_compatible('numpy') }}
 
 test:
   imports:
