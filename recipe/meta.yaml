@@ -16,7 +16,7 @@ build:
     - nc3tonc4 = netCDF4.utils:nc3tonc4
 
 requirements:
-  build:
+  host:
     - python
     - setuptools
     - numpy
