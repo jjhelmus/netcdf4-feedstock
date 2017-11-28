@@ -16,25 +16,23 @@ build:
     - nc3tonc4 = netCDF4.utils:nc3tonc4
 
 requirements:
-  build:
+  host:
     - python
-    - pip
-    - numpy 1.11.*
-    - cython >=0.19
+    - setuptools
     - cftime
-    - hdf5 1.10.1
-    # libnetcdf 4.4.* is the last one to work with Python 2.7 on Windows.
-    - libnetcdf 4.4.*  # [win and py2k]
-    - libnetcdf 4.5.*  # [not (win and py2k)]
+    - numpy
+    - cython >=0.19
+    - hdf5
+    - libnetcdf
+
+  build:
+    - {{ compiler('c') }}
+
   run:
     - python
     - setuptools
-    - numpy >=1.11
-    - cftime
-    - hdf5 1.10.1
-    # libnetcdf 4.4.* is the last one to work with Python 2.7 on Windows.
-    - libnetcdf 4.4.*  # [win and py2k]
-    - libnetcdf >=4.5  # [not (win and py2k)]
+    # run_exports will take care of libnetcdf and hdf5
+    - {{ pin_compatible('numpy') }}
 
 test:
   imports:
