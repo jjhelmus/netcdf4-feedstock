@@ -9,24 +9,24 @@ source:
   sha256: cbb6d58a7182821d6dd52a52042de772c2d342731800b4704323d12233f3ff1a
 
 build:
-  number: 0
+  number: 1
   entry_points:
     - ncinfo = netCDF4.utils:ncinfo
     - nc4tonc3 = netCDF4.utils:nc4tonc3
     - nc3tonc4 = netCDF4.utils:nc3tonc4
 
 requirements:
+  build:
+    - {{ compiler('c') }}
+
   host:
     - python
     - setuptools
     - cftime
     - numpy
-    - cython >=0.19
+    - cython
     - hdf5
     - libnetcdf
-
-  build:
-    - {{ compiler('c') }}
 
   run:
     - python
